@@ -3,7 +3,7 @@ import { ENV } from './lib/env.js'
 
 const app = express()
 
-app.get('/healh', (req, res) => {
+app.get('/health', (req, res) => {
   res.status(200).json({ msg: 'Api is running' })
 })
 
