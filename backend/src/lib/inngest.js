@@ -21,6 +21,12 @@ const syncUser = inngest.createFunction(
     };
 
     await User.create(newUser);
+
+    await upsertStreamUser({
+      id: newUser.clerkID.toString(),
+      name: newUser.name,
+      image: newUser.profileImage,
+    });
   }
 );
 
@@ -32,6 +38,8 @@ const deleteUserFromDB = inngest.createFunction(
 
     const { id } = event.data;
     await User.deleteOne({ clerkID: id });
+
+    await deleteStreamUser(id.toString());
   }
 );
 
